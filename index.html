@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Plate Grill Ordering System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="floating-info">
+  <h2>About Red Plate Grill</h2>
+  <p>Delicious unlimited samgyupsal and grilled meals.</p>
+  <p><strong>Address:</strong> 123 Red Plate St., Quezon City, Philippines</p>
+  <p><strong>Email:</strong> info@redplategrill.com</p>
+</div>
+
+
+<header>
+  <div class="logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png" alt="logo">
+    <h1>Red Plate Grill</h1>
+  </div>
+  <p class="tagline">
+    Deliciously Grilled. Perfectly Served. | 📞 +63 912 345 6789
+  </p>
+</header>
+
+<main>
+
+  <!-- SEARCH -->
+  <section class="search">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="🔍 Search menu..."
+      onkeyup="searchMenu()"
+    >
+  </section>
+
+  <!-- MENU -->
+  <section class="menu">
+    <h2>🍽️ Our Menu</h2>
+    <div class="menu-container" id="menu-list"></div>
+  </section>
+
+  <!-- CART -->
+  <section class="cart">
+    <h2>🛒 Your Order</h2>
+    <div id="cart-items"></div>
+
+    <div class="promo">
+      <input type="text" id="promoCode" placeholder="Promo Code (SAVE10)">
+      <button onclick="applyPromo()">Apply</button>
+    </div>
+
+    <div class="total">
+      <strong>Total: ₱<span id="total">0</span></strong>
+    </div>
+
+    <button id="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    <button class="clear-btn" onclick="clearCart()">Clear Cart</button>
+  </section>
+
+  <!-- CONTACT INFO -->
+  <section class="contact-info">
+    <h2>📍 Contact & Location</h2>
+    <p><strong>Address:</strong> 123 Red Plate St., Quezon City, Philippines</p>
+    <p><strong>Phone:</strong> +63 912 345 6789</p>
+    <p><strong>Email:</strong> info@redplategrill.com</p>
+  </section>
+
+</main>
+
+<!-- ================= ABOUT US (BOTTOM) ================= -->
+<section class="about bottom-about">
+  <h2>🔥 About Red Plate Grill</h2>
+  <p>
+    Red Plate Grill is known for delicious unlimited samgyupsal and perfectly
+    grilled meals. Our digital ordering system is designed to improve service
+    speed, order accuracy, and overall customer satisfaction.
+  </p>
+</section>
+
+<!-- ================= CHECKOUT MODAL ================= -->
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <h2>Checkout</h2>
+    <form onsubmit="processOrder(event)">
+      <input id="name" placeholder="Full Name" required>
+      <input id="table" placeholder="Table Number / Take-out" required>
+      <input id="email" type="email" placeholder="Email Address" required>
+
+      <select id="payment" required>
+        <option value="">Payment Method</option>
+        <option>Cash</option>
+        <option>GCash</option>
+        <option>Credit Card</option>
+      </select>
+
+      <h3>🧾 Order Summary</h3>
+      <div id="orderSummary"></div>
+
+      <p><strong>Total: ₱<span id="finalTotal">0</span></strong></p>
+      <p class="eta">⏱ Estimated Time: 15–25 mins</p>
+
+      <div class="form-buttons">
+        <button type="button" onclick="closeModal()">Cancel</button>
+        <button class="confirm">Place Order</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= DISCOUNT POPUP ================= -->
+<div id="discountPopup" class="discount-popup">
+  <div class="discount-box">
+    <h2>🎉 Promo Applied!</h2>
+    <p>You saved <strong>₱<span id="discountAmount">0</span></strong></p>
+    <button onclick="closeDiscount()">OK</button>
+  </div>
+</div>
+
+<!-- ================= CONFIRMATION ================= -->
+<div id="confirmation" class="confirmation">
+  <div class="confirmation-content">
+    <h2>✅ Order Confirmed</h2>
+    <p>Your order number is <strong>#<span id="orderNo"></span></strong></p>
+    <button onclick="printReceipt()">🖨️ Print Receipt</button>
+    <button onclick="closeConfirmation()">Close</button>
+  </div>
+</div>
+
+<!-- ================= RECEIPT ================= -->
+<div id="receipt">
+  <div class="receipt-content" id="receiptContent"></div>
+</div>
+
+<!-- ================= FLOATING CONTACT BAR ================= -->
+<div class="floating-contact">
+  <a href="tel:+639123456789" class="contact-btn">📞 Call Us</a>
+  <a href="mailto:info@redplategrill.com" class="contact-btn">✉️ Email</a>
+  <a
+    href="https://www.google.com/maps/search/123+Red+Plate+St.,+Quezon+City"
+    target="_blank"
+    class="contact-btn"
+  >📍 Directions</a>
+</div>
+
+<!-- ================= MENU MODAL ================= -->
+<div id="menuModal" class="menu-modal">
+  <div class="menu-modal-content">
+    <button class="back-btn" onclick="closeMenuModal()">← Back to Menu</button>
+
+    <img id="modalImg">
+    <h2 id="modalName"></h2>
+
+    <p><strong>Ingredients:</strong></p>
+    <ul id="modalIngredients"></ul>
+
+    <p class="price">₱<span id="modalPrice"></span></p>
+
+    <button class="add-btn" onclick="addModalToCart(event)">Add to Cart</button>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Red Plate Grill | Ordering System Project</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
